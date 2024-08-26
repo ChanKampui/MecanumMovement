@@ -12,15 +12,15 @@ Motor::Motor(const uint8_t pin_inA, const uint8_t pin_inB,
 
 void Motor::setSpeed(int16_t speed) {
   m_speed = constrain(speed, -255, 255);
-  if (m_speed > 0) {
+  if (m_speed > 0) { //forward
     digitalWrite(m_pin_inA, HIGH);
     digitalWrite(m_pin_inB, LOW);
     analogWrite(m_pin_PWM, m_speed);
-  } else if (m_speed < 0) {
+  } else if (m_speed < 0) { //backward
     digitalWrite(m_pin_inA, LOW);
     digitalWrite(m_pin_inB, HIGH);
     analogWrite(m_pin_PWM, -m_speed);
-  } else {
+  } else { //stop
     digitalWrite(m_pin_inA, HIGH);
     digitalWrite(m_pin_inB, HIGH);
     analogWrite(m_pin_PWM, 0);
